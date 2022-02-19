@@ -8,7 +8,7 @@ describe('Ship', () => {
   });
 
   test('create and initialize a ship', () => {
-    expect(ship).toEqual({ length: 3, direction: 'horizontal', hits: [] });
+    expect(ship).toEqual({ length: 3, hits: [] });
   });
 
   test('take a hit', () => {

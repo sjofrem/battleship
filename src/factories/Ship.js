@@ -1,7 +1,6 @@
 class Ship {
   constructor(length) {
     this.length = length;
-    this.direction = 'horizontal';
     this.hits = [];
   }
 
