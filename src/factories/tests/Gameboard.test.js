@@ -5,7 +5,7 @@ describe('Ship', () => {
   let gameboard;
   let ship;
   const testBoard = [];
-  const testMissShots = [];
+  const testshots = [];
 
   beforeEach(() => {
     gameboard = new Gameboard();
@@ -13,10 +13,10 @@ describe('Ship', () => {
 
     for (let i = 0; i < 10; i++) {
       testBoard[i] = [];
-      testMissShots[i] = [];
+      testshots[i] = [];
       for (let j = 0; j < 10; j++) {
         testBoard[i][j] = null;
-        testMissShots[i][j] = false;
+        testshots[i][j] = false;
       }
     }
   });
@@ -24,7 +24,7 @@ describe('Ship', () => {
   test('create and initialize the gameboard', () => {
     expect(gameboard).toEqual({
       board: testBoard,
-      missShots: testMissShots,
+      shots: testshots,
     });
   });
 
@@ -35,8 +35,13 @@ describe('Ship', () => {
     testBoard[3][1] = ship;
     expect(gameboard).toEqual({
       board: testBoard,
-      missShots: testMissShots,
+      shots: testshots,
     });
+  });
+
+  test('place ships randomly', () => {
+    gameboard.placeShipsRandomly();
+    expect(gameboard.getEmptyFields()).toBe(83);
   });
 
   test('prevent placement of a ship outside gameboard', () => {
@@ -60,7 +65,7 @@ describe('Ship', () => {
   test('keep track of miss attack', () => {
     gameboard.placeShip(ship, 1, 1, true);
     gameboard.receiveAttack(2, 2);
-    expect(gameboard.missShots[2][2]).toBe(true);
+    expect(gameboard.shots[2][2]).toBe(true);
   });
 
   test('report if all ships have been sunk', () => {

@@ -1,19 +1,21 @@
+import Ship from './Ship';
+
 const SIZE = 10;
 
 class Gameboard {
   constructor() {
     this.board = [];
-    this.missShots = [];
+    this.shots = [];
     this.initialize();
   }
 
   initialize() {
     for (let i = 0; i < SIZE; i++) {
       this.board[i] = [];
-      this.missShots[i] = [];
+      this.shots[i] = [];
       for (let j = 0; j < SIZE; j++) {
         this.board[i][j] = null;
-        this.missShots[i][j] = false;
+        this.shots[i][j] = false;
       }
     }
   }
@@ -32,6 +34,41 @@ class Gameboard {
       }
     }
     return true;
+  }
+
+  placeShipsRandomly() {
+    const ships = [];
+    const carrier = new Ship(5);
+    const battleship = new Ship(4);
+    const destroyer = new Ship(3);
+    const submarine = new Ship(3);
+    const patrolBoat = new Ship(2);
+    ships.push(carrier, battleship, destroyer, submarine, patrolBoat);
+
+    let succesfulPlacemets = 0;
+
+    while (succesfulPlacemets < 5) {
+      const row = Math.floor(Math.random() * 10);
+      const column = Math.floor(Math.random() * 10);
+      const isVertical = Math.floor(Math.random() * 2) === 1;
+
+      if (this.placeShip(ships[succesfulPlacemets], row, column, isVertical)) {
+        succesfulPlacemets++;
+      }
+    }
+  }
+
+  getEmptyFields() {
+    let emptyFields = 0;
+
+    for (let i = 0; i < SIZE; i++) {
+      for (let j = 0; j < SIZE; j++) {
+        if (this.board[i][j] === null) {
+          emptyFields++;
+        }
+      }
+    }
+    return emptyFields;
   }
 
   isValidPlacement(ship, row, column, isVertical) {
@@ -92,10 +129,11 @@ class Gameboard {
       }
 
       this.board[row][column].hit(hitIndex);
+      this.shots[row][column] = true;
       return true;
     }
 
-    this.missShots[row][column] = true;
+    this.shots[row][column] = true;
     return false;
   }
 
