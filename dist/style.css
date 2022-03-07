@@ -1,0 +1,163 @@
+* {
+    block-size: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: snow;
+    font-family: 'Anton', sans-serif;
+    min-height: 650px;
+}
+
+.header {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 0 15px;
+    gap: 10px;
+    font-size: 38px;
+    background-color: rgba(240, 235, 235, 0.698);
+    border-bottom: 1.5px solid rgba(0, 0, 0, 0.212);
+    height: 80px;
+}
+
+.logo {
+    height: 38px;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.game {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    overflow: auto;
+    min-height: 500px;
+}
+
+.player {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.playerTag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(218, 44, 73);
+    color: snow;
+    padding: 8px;
+    border-radius: 5px;
+    letter-spacing: 6px;
+}
+
+.cpu {
+    background-color: grey;
+}
+
+.coordinate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.664);
+}
+
+.field, .cpuField{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(217, 240, 238, 0.945);
+    border-radius: 5px;
+    margin: 2px;
+    transition: 0.2s;
+}
+
+.shot {
+    border-radius: 100%;
+    width: 35%;
+    height: 35%;
+}
+
+.hit {
+    background-color: red;
+}
+
+.miss {
+    background-color: rgba(129, 216, 228, 0.945);
+}
+
+.ship {
+    background-color: rgba(206, 209, 209, 0.945);
+}
+
+.gameboard {
+    display: grid;
+    height: 450px;
+    width: 450px;
+    grid-template-columns: repeat(11, 1fr);
+    grid-template-rows: repeat(11, 1fr);
+}
+
+.instructionsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    min-height: 30px;
+    padding: 15px 0;
+}
+
+.instructionsPrompt {
+    font-size: 50px;
+    min-height: 35px;
+    margin: 0;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(248, 73, 73);
+    border: none;
+    color: snow;
+    height: 35px;
+    width: 55px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    padding: 0.35em 1em;
+    transition: 0.2s;
+}
+
+@media (hover: hover) {
+    .cpuField:hover {
+        background-color: rgba(200, 228, 225, 0.945);
+    }
+
+    .btn:hover {
+        transform: scale(1.1);
+    }
+}
+
+@media (max-width: 1150px) {
+    .instructionsPrompt {
+        font-size: 35px;
+    }
+
+    .game {
+        flex-direction: column;
+        height: 90vh;
+        gap: 30px;
+        min-height: 800px;
+    }
+
+    .gameboard {
+        height: 270px;
+        width: 270px;
+    }
+}
